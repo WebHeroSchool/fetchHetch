@@ -1,0 +1,12 @@
+body {
+  text-align: center;
+}
+
+.link {
+  text-decoration: underline;
+  font: italic 500 26px 'PT Serif';
+}
+
+.link:hover {
+  cursor: pointer;
+}
