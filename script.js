@@ -1,7 +1,7 @@
 let body = document.body;
 let urlParam = window.location.search.substring(1);
 
-let url = 'https://api.github.com/users/fgfgf';
+let url = 'https://api.github.com/users/Alina1317';
   if(urlParam != '') {
     url = `https://api.github.com/users/${login}`
   }
