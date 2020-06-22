@@ -3,7 +3,7 @@ let urlParam = window.location.search.substring(1);
 
 let url = 'https://api.github.com/users/Alina1317';
   if(urlParam != '') {
-    url = `https://api.github.com/users/${login}`
+    url = `https://api.github.com/users/${login}`;
   }
 
 fetch(url)
@@ -12,7 +12,7 @@ fetch(url)
       return response.json();
     }
     else {
-      throw(response.statusText);
+      return null;
     }
   })
   
@@ -45,7 +45,4 @@ fetch(url)
     body.append(bio);  
     })
     
-    .catch(error => {
-       error.innerHTML = 'Пользователь не найден';
-    });
-      /* console.log('Информация о пользователе недоступна')); */
+    .catch(error => alert('Пользователь не найден'));
