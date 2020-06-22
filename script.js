@@ -1,5 +1,6 @@
 let body = document.body;
 let urlParam = window.location.search.substring(1);
+let login = urlParam.substring(6);
 
 let url = 'https://api.github.com/users/Alina1317';
   if(urlParam != '') {
@@ -44,5 +45,6 @@ fetch(url)
     }
     body.append(bio);  
     })
+  
+    .catch(error => document.body.innerHTML = 'Пользователь не найден');
     
-    .catch(error => alert('Пользователь не найден'));

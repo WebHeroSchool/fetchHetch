@@ -3,8 +3,9 @@ body {
 }
 
 .link {
-  text-decoration: underline;
+  text-decoration: underline #008080;
   font: italic 500 26px 'PT Serif';
+  color: 
 }
 
 .link:hover {
