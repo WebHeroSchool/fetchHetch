@@ -1,6 +1,8 @@
-let body = document.body;
-let urlParam = window.location.search.substring(1);
-let login = urlParam.substring(6);
+const body = document.body;
+
+const urlParams = new URLSearchParams(window.location.search);
+const myParam = urlParams.get('username');
+let login = myParam;
 
 let url = 'https://api.github.com/users/Alina1317';
   if(urlParam != '') {
@@ -18,11 +20,6 @@ fetch(url)
   })
   
   .then(json => {
-      console.log(json.avatar_url);
-      console.log(json.name);
-      console.log(json.bio);
-      console.log(json.html_url);
-   
    let ava = new Image();  
    ava.src = json.avatar_url;
    body.append(ava);
