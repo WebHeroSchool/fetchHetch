@@ -1,12 +1,25 @@
+// const body = document.body;
+
+// const urlParams = new URLSearchParams(window.location.search);
+// let myParam = urlParams.get('username');
+// let login = myParam;
+
+// let url = `https://api.github.com/users/${login}`; //'https://api.github.com/users/Alina1317';
+//   if(login = 'Alina1317') {
+//     url = 'https://api.github.com/users/Alina1317';
+//   }
+//   else {
+//     url = 'https://api.github.com/users/${username}';
+//   }
+
 const body = document.body;
 
-const urlParams = new URLSearchParams(window.location.search);
-const myParam = urlParams.get('username');
-let login = myParam;
+const urlParam = window.location.search.substring(1);
+const login = (urlParam.split(('='))[1]);
 
 let url = 'https://api.github.com/users/Alina1317';
   if(urlParam != '') {
-    url = `https://api.github.com/users/${login}`;
+    url = `https://api.github.com/users/${login}`
   }
 
 fetch(url)
@@ -15,7 +28,9 @@ fetch(url)
       return response.json();
     }
     else {
-      return null;
+      let err = new Error(response.statusText + ' ' + response.status);
+      err.response = response;
+      throw err
     }
   })
   
@@ -43,5 +58,5 @@ fetch(url)
     body.append(bio);  
     })
   
-    .catch(error => document.body.innerHTML = 'Пользователь не найден');
+    .catch(error => document.body.innerHTML = `Пользователь не найден.<br> ${error}`);
     
