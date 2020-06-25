@@ -1,16 +1,3 @@
-// const body = document.body;
-
-// const urlParams = new URLSearchParams(window.location.search);
-// let myParam = urlParams.get('username');
-// let login = myParam;
-
-// let url = `https://api.github.com/users/${login}`; //'https://api.github.com/users/Alina1317';
-//   if(login = 'Alina1317') {
-//     url = 'https://api.github.com/users/Alina1317';
-//   }
-//   else {
-//     url = 'https://api.github.com/users/${username}';
-//   }
 
 const body = document.body;
 
