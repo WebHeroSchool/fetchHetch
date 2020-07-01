@@ -16,8 +16,8 @@ let nowDate = new Date();
     }
     else{
       reject('Ошибка вычисления времени')
-    }, 3000
-  });
+    }
+  }, 3000);
 
 // let container = document.querySelector('.container');
 
