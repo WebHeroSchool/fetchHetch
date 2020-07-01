@@ -1,4 +1,3 @@
-
 const body = document.body;
 
 const urlParam = window.location.search.substring(1);
@@ -9,7 +8,31 @@ let url = 'https://api.github.com/users/Alina1317';
     url = `https://api.github.com/users/${login}`
   }
 
-fetch(url)
+let getDate = new Promise((resolve, reject) => {
+let nowDate = new Date();
+  setTimeout(() => {
+    if(nowDate == true) {
+      resolve(nowDate)
+    }
+    else{
+      reject('Ошибка вычисления времени')
+    }, 3000
+  });
+
+// let container = document.querySelector('.container');
+
+// function preLouder() {
+//   container.classList.add('block');
+// }
+
+let getUser = fetch(url)
+
+Promise.all([getUser, getDate])
+  .then(([user, date]) => {
+    userUrl = user;
+    dateNow = date;
+  })
+
   .then(response => {
     if (response.status != 404) {
       return response.json();
@@ -46,4 +69,3 @@ fetch(url)
     })
   
     .catch(error => document.body.innerHTML = `Пользователь не найден.<br> ${error}`);
-    
