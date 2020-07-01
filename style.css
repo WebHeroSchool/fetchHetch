@@ -1,0 +1,13 @@
+body {
+  text-align: center;
+}
+
+.link {
+  text-decoration: underline #008080;
+  font: italic 500 26px 'PT Serif';
+  color: 
+}
+
+.link:hover {
+  cursor: pointer;
+}
