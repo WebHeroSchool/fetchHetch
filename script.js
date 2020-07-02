@@ -9,15 +9,23 @@ let url = 'https://api.github.com/users/Alina1317';
   }
 
 let getDate = new Promise((resolve, reject) => {
-let nowDate = new Date();
-  setTimeout(() => {
-    if(nowDate == true) {
-      resolve(nowDate)
-    }
-    else{
-      reject('Ошибка вычисления времени')
-    }
-  }, 3000);
+  // setTimeout(() => {
+  //   let nowDate = new Date();
+  //   resolve(nowDate);
+  // }, 3000);
+  let nowDate = new Date();
+  setTimeout(() => nowDate ? resolve(nowDate) : reject ('Время не определено'), 3000)
+  });
+
+//   setTimeout(() => {
+//     if(nowDate) {
+//       resolve(nowDate);
+//     }
+//     else{
+//       reject('Ошибка вычисления времени')
+//     }
+//   }, 3000);
+// });
 
 // let container = document.querySelector('.container');
 
@@ -32,15 +40,16 @@ Promise.all([getUser, getDate])
     userUrl = user;
     dateNow = date;
   })
-
+  
   .then(response => {
-    if (response.status != 404) {
-      return response.json();
+    if (userUrl.status !== 404) {
+      return userUrl.json();
     }
     else {
-      let err = new Error(response.statusText + ' ' + response.status);
-      err.response = response;
-      throw err
+      // let err = new Error(response.statusText + ' ' + response.status);
+      // err.response = response;
+      throw(response.statusText + ' ' + response.status); 
+      // err
     }
   })
   
@@ -67,5 +76,9 @@ Promise.all([getUser, getDate])
     }
     body.append(bio);  
     })
+
+   // let date = document.createElement('p');
+
+   // body.append(date); 
   
     .catch(error => document.body.innerHTML = `Пользователь не найден.<br> ${error}`);
