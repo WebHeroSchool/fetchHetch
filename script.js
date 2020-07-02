@@ -38,7 +38,9 @@ let getUser = fetch(url)
 Promise.all([getUser, getDate])
   .then(([user, date]) => {
     userUrl = user;
-    dateNow = date;
+    let dateD = document.createElement('p');
+    dateD.innerHTML = `${date}`;
+    body.append(dateD);
   })
   
   .then(response => {
