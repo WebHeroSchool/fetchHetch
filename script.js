@@ -9,38 +9,22 @@ let url = 'https://api.github.com/users/Alina1317';
   }
 
 let getDate = new Promise((resolve, reject) => {
-  // setTimeout(() => {
-  //   let nowDate = new Date();
-  //   resolve(nowDate);
-  // }, 3000);
-  let nowDate = new Date();
+let nowDate = new Date();
   setTimeout(() => nowDate ? resolve(nowDate) : reject ('Время не определено'), 3000)
   });
 
-//   setTimeout(() => {
-//     if(nowDate) {
-//       resolve(nowDate);
-//     }
-//     else{
-//       reject('Ошибка вычисления времени')
-//     }
-//   }, 3000);
-// });
+   let preloader = document.querySelector('.preloader');
 
-// let container = document.querySelector('.container');
-
-// function preLouder() {
-//   container.classList.add('block');
-// }
-
+   function preLouder() {
+    preloader.classList.add('block');
+   }
+  
 let getUser = fetch(url)
 
 Promise.all([getUser, getDate])
   .then(([user, date]) => {
     userUrl = user;
-    let dateD = document.createElement('p');
-    dateD.innerHTML = `${date}`;
-    body.append(dateD);
+    dateNow = date;
   })
   
   .then(response => {
@@ -48,17 +32,22 @@ Promise.all([getUser, getDate])
       return userUrl.json();
     }
     else {
-      // let err = new Error(response.statusText + ' ' + response.status);
-      // err.response = response;
       throw(response.statusText + ' ' + response.status); 
-      // err
     }
   })
   
   .then(json => {
+   let div = document.createElement('div');
+   div.className = 'content'
+   document.body.append(div);
+
+   let date = document.createElement('p');
+    date.innerHTML = dateNow;
+    div.append(date);
+
    let ava = new Image();  
    ava.src = json.avatar_url;
-   body.append(ava);
+   div.append(ava);
    
    let name = document.createElement('p');
    name.classList.add('link');
@@ -68,7 +57,7 @@ Promise.all([getUser, getDate])
     } else {
       name.innerHTML = 'Информация об имени пользователя недоступна';
     }
-    body.append(name); 
+    div.append(name); 
     
    let bio = document.createElement('p');
     if (json.bio != null) {
@@ -76,11 +65,9 @@ Promise.all([getUser, getDate])
     } else {
        bio.innerHTML = 'Пользователь не заполнил это поле';
     }
-    body.append(bio);  
+    div.append(bio);
+
+     preLouder();  
     })
 
-   // let date = document.createElement('p');
-
-   // body.append(date); 
-  
-    .catch(error => document.body.innerHTML = `Пользователь не найден.<br> ${error}`);
+   .catch(error => document.body.innerHTML = `Пользователь не найден. <br> ${error}`);
