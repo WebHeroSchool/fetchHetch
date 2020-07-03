@@ -32,7 +32,9 @@ Promise.all([getUser, getDate])
       return userUrl.json();
     }
     else {
-      throw(response.statusText + ' ' + response.status); 
+      let err = new Error(userUrl.statusText + ' ' + userUrl.status);
+      err.userUrl = response;
+      throw err   
     }
   })
   
